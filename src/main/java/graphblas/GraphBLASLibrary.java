@@ -36,6 +36,9 @@ public interface GraphBLASLibrary extends Library {
 	GrB_Type GrB_BOOL = new GrB_Type(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_BOOL").getPointer(0));
 	GrB_Type GrB_INT8 = new GrB_Type(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_INT8").getPointer(0));
 
+	GrB_BinaryOp GrB_SECOND_FP64 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_FP64").getPointer(0));
+	GrB_BinaryOp GrB_SECOND_INT8 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_INT8").getPointer(0));
+
 	public static interface GrB_Info {
 		/** <i>native declaration : /usr/include/GraphBLAS.h:79</i> */
 		public static final int GrB_SUCCESS = 0;
@@ -3156,7 +3159,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param A matrix to query<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1725</i>
 	 */
-	int GrB_Matrix_nvals(LongBuffer nvals, GraphBLASLibrary.GrB_Matrix A);
+	int GrB_Matrix_nvals(IntByReference nvals, GraphBLASLibrary.GrB_Matrix A);
 	/**
 	 * SPEC: GxB_Matrix_type is an extension to the spec<br>
 	 * get the type of a matrix<br>
@@ -3239,7 +3242,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param dup binary function to assemble duplicates<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1774</i>
 	 */
-	int GrB_Matrix_build_INT8(GraphBLASLibrary.GrB_Matrix C, LongBuffer I, LongBuffer J, byte X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
+	int GrB_Matrix_build_INT8(GraphBLASLibrary.GrB_Matrix C, long I[], long J[], byte X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
 	 * Original signature : <code>GrB_Info GrB_Matrix_build_UINT8(GrB_Matrix, const GrB_Index*, const GrB_Index*, const uint8_t*, const GrB_Index, const GrB_BinaryOp)</code><br>
@@ -3811,7 +3814,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param j column index<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2099</i>
 	 */
-	int GrB_Matrix_extractElement_INT8(ByteBuffer x, GraphBLASLibrary.GrB_Matrix A, long i, long j);
+	int GrB_Matrix_extractElement_INT8(IntByReference x, GraphBLASLibrary.GrB_Matrix A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
 	 * Original signature : <code>GrB_Info GrB_Matrix_extractElement_UINT8(uint8_t*, const GrB_Matrix, const GrB_Index, const GrB_Index)</code><br>

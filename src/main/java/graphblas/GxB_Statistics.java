@@ -59,7 +59,7 @@ public class GxB_Statistics extends Structure {
 	public GxB_Statistics() {
 		super();
 	}
-	protected List<? > getFieldOrder() {
+	protected List<String> getFieldOrder() {
 		return Arrays.asList("nmalloc", "inuse", "maxused", "future", "xfuture");
 	}
 	/**
