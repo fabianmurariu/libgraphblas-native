@@ -36,8 +36,17 @@ public interface GraphBLASLibrary extends Library {
 	GrB_Type GrB_BOOL = new GrB_Type(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_BOOL").getPointer(0));
 	GrB_Type GrB_INT8 = new GrB_Type(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_INT8").getPointer(0));
 
+	default GrB_Type GrB_BOOLm() {
+		return GrB_BOOL;
+	}
+
 	GrB_BinaryOp GrB_SECOND_FP64 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_FP64").getPointer(0));
 	GrB_BinaryOp GrB_SECOND_INT8 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_INT8").getPointer(0));
+	GrB_BinaryOp GrB_SECOND_BOOL = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_BOOL").getPointer(0));
+
+	default GrB_BinaryOp GrBSecondBool(){
+		return GrB_SECOND_BOOL;
+	}
 
 	public static interface GrB_Info {
 		/** <i>native declaration : /usr/include/GraphBLAS.h:79</i> */
@@ -811,7 +820,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:257</i><br>
 	 * @deprecated use the safer method {@link #GrB_Type_new(com.sun.jna.ptr.PointerByReference, com.ochafik.lang.jnaerator.runtime.NativeSize)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Type_new(Pointer type, NativeSize sizeof_ctype);
 	/**
 	 * #define NMACRO<br>
@@ -832,7 +841,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:275</i><br>
 	 * @deprecated use the safer methods {@link #GB_Type_new(com.sun.jna.ptr.PointerByReference, com.ochafik.lang.jnaerator.runtime.NativeSize, java.lang.String)} and {@link #GB_Type_new(com.sun.jna.ptr.PointerByReference, com.ochafik.lang.jnaerator.runtime.NativeSize, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GB_Type_new(Pointer type, NativeSize sizeof_ctype, Pointer name);
 	/**
 	 * to be added to the new type.<br>
@@ -863,7 +872,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:284</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Type_size(com.ochafik.lang.jnaerator.runtime.NativeSizeByReference, graphblas.GraphBLASLibrary.GrB_Type)} and {@link #GxB_Type_size(com.ochafik.lang.jnaerator.runtime.NativeSizeByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Type_size(NativeSizeByReference size, Pointer type);
 	/**
 	 * SPEC: GxB_Type_size is an extension to the spec<br>
@@ -881,7 +890,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:290</i><br>
 	 * @deprecated use the safer method {@link #GrB_Type_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Type_free(Pointer type);
 	/**
 	 * free a user-defined type<br>
@@ -901,7 +910,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:382</i><br>
 	 * @deprecated use the safer methods {@link #GrB_UnaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Type, graphblas.GraphBLASLibrary.GrB_Type)} and {@link #GrB_UnaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_UnaryOp_new(Pointer unaryop, Pointer function, Pointer ztype, Pointer xtype);
 	/**
 	 * discussion of GrB_Type_new above.<br>
@@ -936,7 +945,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:394</i><br>
 	 * @deprecated use the safer methods {@link #GB_UnaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Type, graphblas.GraphBLASLibrary.GrB_Type, java.lang.String)} and {@link #GB_UnaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GB_UnaryOp_new(Pointer unaryop, Pointer function, Pointer ztype, Pointer xtype, Pointer name);
 	/**
 	 * not user-callable; use GrB_UnaryOp_new<br>
@@ -969,7 +978,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:405</i><br>
 	 * @deprecated use the safer methods {@link #GxB_UnaryOp_ztype(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_UnaryOp)} and {@link #GxB_UnaryOp_ztype(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_UnaryOp_ztype(Pointer ztype, Pointer unaryop);
 	/**
 	 * SPEC: GxB_UnaryOp_ztype is an extension to the spec<br>
@@ -998,7 +1007,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:413</i><br>
 	 * @deprecated use the safer methods {@link #GxB_UnaryOp_xtype(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_UnaryOp)} and {@link #GxB_UnaryOp_xtype(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_UnaryOp_xtype(Pointer xtype, Pointer unaryop);
 	/**
 	 * SPEC: GxB_UnaryOp_xtype is an extension to the spec<br>
@@ -1025,7 +1034,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:419</i><br>
 	 * @deprecated use the safer method {@link #GrB_UnaryOp_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_UnaryOp_free(Pointer unaryop);
 	/**
 	 * free a user-created unary operator<br>
@@ -1045,7 +1054,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:664</i><br>
 	 * @deprecated use the safer methods {@link #GrB_BinaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Type, graphblas.GraphBLASLibrary.GrB_Type, graphblas.GraphBLASLibrary.GrB_Type)} and {@link #GrB_BinaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_BinaryOp_new(Pointer binaryop, Pointer function, Pointer ztype, Pointer xtype, Pointer ytype);
 	/**
 	 * discussion of GrB_Type_new above.<br>
@@ -1081,7 +1090,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:677</i><br>
 	 * @deprecated use the safer methods {@link #GB_BinaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Type, graphblas.GraphBLASLibrary.GrB_Type, graphblas.GraphBLASLibrary.GrB_Type, java.lang.String)} and {@link #GB_BinaryOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GB_BinaryOp_new(Pointer binaryop, Pointer function, Pointer ztype, Pointer xtype, Pointer ytype, Pointer name);
 	/**
 	 * not user-callable; use GrB_BinaryOp_new<br>
@@ -1116,7 +1125,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:689</i><br>
 	 * @deprecated use the safer methods {@link #GxB_BinaryOp_ztype(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GxB_BinaryOp_ztype(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_BinaryOp_ztype(Pointer ztype, Pointer binaryop);
 	/**
 	 * SPEC: GxB_BinaryOp_ztype is an extension to the spec<br>
@@ -1145,7 +1154,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:697</i><br>
 	 * @deprecated use the safer methods {@link #GxB_BinaryOp_xtype(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GxB_BinaryOp_xtype(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_BinaryOp_xtype(Pointer xtype, Pointer binaryop);
 	/**
 	 * SPEC: GxB_BinaryOp_xtype is an extension to the spec<br>
@@ -1174,7 +1183,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:705</i><br>
 	 * @deprecated use the safer methods {@link #GxB_BinaryOp_ytype(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GxB_BinaryOp_ytype(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_BinaryOp_ytype(Pointer ytype, Pointer binaryop);
 	/**
 	 * SPEC: GxB_BinaryOp_ytype is an extension to the spec<br>
@@ -1201,7 +1210,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:711</i><br>
 	 * @deprecated use the safer method {@link #GrB_BinaryOp_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_BinaryOp_free(Pointer binaryop);
 	/**
 	 * free a user-created binary operator<br>
@@ -1220,7 +1229,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:780</i><br>
 	 * @deprecated use the safer methods {@link #GxB_SelectOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Type)} and {@link #GxB_SelectOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_SelectOp_new(Pointer selectop, Pointer function, Pointer xtype);
 	/**
 	 * discussion of GrB_Type_new above.<br>
@@ -1252,7 +1261,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:791</i><br>
 	 * @deprecated use the safer methods {@link #GB_SelectOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Type, java.lang.String)} and {@link #GB_SelectOp_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GB_SelectOp_new(Pointer selectop, Pointer function, Pointer xtype, Pointer name);
 	/**
 	 * not user-callable; use GxB_SelectOp_new<br>
@@ -1282,7 +1291,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:799</i><br>
 	 * @deprecated use the safer methods {@link #GxB_SelectOp_xtype(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GxB_SelectOp)} and {@link #GxB_SelectOp_xtype(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_SelectOp_xtype(Pointer xtype, Pointer selectop);
 	/**
 	 * return the type of x<br>
@@ -1307,7 +1316,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:805</i><br>
 	 * @deprecated use the safer method {@link #GxB_SelectOp_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_SelectOp_free(Pointer selectop);
 	/**
 	 * free a user-created select operator<br>
@@ -1326,7 +1335,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:823</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_BOOL(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte)} and {@link #GrB_Monoid_new_BOOL(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, byte)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_BOOL(Pointer monoid, Pointer op, byte identity);
 	/**
 	 * the binary_op type.  The binary_op's three types must all be the same.<br>
@@ -1357,7 +1366,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:830</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_INT8(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte)} and {@link #GrB_Monoid_new_INT8(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, byte)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_INT8(Pointer monoid, Pointer op, byte identity);
 	/**
 	 * create a new int8 monoid<br>
@@ -1386,7 +1395,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:837</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_UINT8(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte)} and {@link #GrB_Monoid_new_UINT8(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, byte)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_UINT8(Pointer monoid, Pointer op, byte identity);
 	/**
 	 * create a new uint8 monoid<br>
@@ -1415,7 +1424,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:844</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_INT16(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, short)} and {@link #GrB_Monoid_new_INT16(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, short)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_INT16(Pointer monoid, Pointer op, short identity);
 	/**
 	 * create a new int16 monoid<br>
@@ -1444,7 +1453,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:851</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_UINT16(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, short)} and {@link #GrB_Monoid_new_UINT16(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, short)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_UINT16(Pointer monoid, Pointer op, short identity);
 	/**
 	 * create a new uint16 monoid<br>
@@ -1473,7 +1482,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:858</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_INT32(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, int)} and {@link #GrB_Monoid_new_INT32(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, int)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_INT32(Pointer monoid, Pointer op, int identity);
 	/**
 	 * create a new int32 monoid<br>
@@ -1502,7 +1511,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:865</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_UINT32(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, int)} and {@link #GrB_Monoid_new_UINT32(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, int)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_UINT32(Pointer monoid, Pointer op, int identity);
 	/**
 	 * create a new uint32 monoid<br>
@@ -1531,7 +1540,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:872</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_INT64(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, long)} and {@link #GrB_Monoid_new_INT64(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_INT64(Pointer monoid, Pointer op, long identity);
 	/**
 	 * create a new int64 monoid<br>
@@ -1560,7 +1569,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:879</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_UINT64(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, long)} and {@link #GrB_Monoid_new_UINT64(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_UINT64(Pointer monoid, Pointer op, long identity);
 	/**
 	 * create a new uint64 monoid<br>
@@ -1589,7 +1598,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:886</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_FP32(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, float)} and {@link #GrB_Monoid_new_FP32(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, float)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_FP32(Pointer monoid, Pointer op, float identity);
 	/**
 	 * create a new float monoid<br>
@@ -1618,7 +1627,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:893</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_FP64(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, double)} and {@link #GrB_Monoid_new_FP64(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, double)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_FP64(Pointer monoid, Pointer op, double identity);
 	/**
 	 * create a new double monoid<br>
@@ -1647,7 +1656,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:900</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Monoid_new_UDT(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_BinaryOp, com.sun.jna.Pointer)} and {@link #GrB_Monoid_new_UDT(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_new_UDT(Pointer monoid, Pointer op, Pointer identity);
 	/**
 	 * create a monoid with a user-defined type<br>
@@ -1676,7 +1685,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:953</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Monoid_operator(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Monoid)} and {@link #GxB_Monoid_operator(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Monoid_operator(Pointer op, Pointer monoid);
 	/**
 	 * SPEC: GxB_Monoid_operator is an extension to the spec<br>
@@ -1705,7 +1714,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:961</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Monoid_identity(com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Monoid)} and {@link #GxB_Monoid_identity(com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Monoid_identity(Pointer identity, Pointer monoid);
 	/**
 	 * SPEC: GxB_Monoid_identity is an extension to the spec<br>
@@ -1723,7 +1732,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:967</i><br>
 	 * @deprecated use the safer method {@link #GrB_Monoid_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Monoid_free(Pointer monoid);
 	/**
 	 * free a user-created monoid<br>
@@ -1741,7 +1750,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:984</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Semiring_new(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Semiring_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Semiring_new(Pointer semiring, Pointer add, Pointer multiply);
 	/**
 	 * create a semiring<br>
@@ -1770,7 +1779,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:993</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Semiring_add(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Semiring)} and {@link #GxB_Semiring_add(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Semiring_add(Pointer add, Pointer semiring);
 	/**
 	 * SPEC: GxB_Semiring_add is an extension to the spec<br>
@@ -1799,7 +1808,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1001</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Semiring_multiply(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Semiring)} and {@link #GxB_Semiring_multiply(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Semiring_multiply(Pointer multiply, Pointer semiring);
 	/**
 	 * SPEC: GxB_Semiring_multiply is an extension to the spec<br>
@@ -1826,7 +1835,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1007</i><br>
 	 * @deprecated use the safer method {@link #GrB_Semiring_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Semiring_free(Pointer semiring);
 	/**
 	 * free a user-created semiring<br>
@@ -1845,7 +1854,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1046</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_new(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Type, long)} and {@link #GrB_Vector_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_new(Pointer v, Pointer type, long n);
 	/**
 	 * and type methods return basic information about a vector.<br>
@@ -1875,7 +1884,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1053</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_dup(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_dup(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_dup(Pointer w, Pointer u);
 	/**
 	 * make an exact copy of a vector<br>
@@ -1900,7 +1909,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1059</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_clear(graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_clear(com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_clear(Pointer v);
 	/**
 	 * clear a vector of all entries;<br>
@@ -1917,7 +1926,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1064</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_size(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_size(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_size(LongByReference n, Pointer v);
 	/**
 	 * get the dimension of a vector<br>
@@ -1935,7 +1944,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1070</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_nvals(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_nvals(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_nvals(LongByReference nvals, Pointer v);
 	/**
 	 * get the number of entries in a vector<br>
@@ -1954,7 +1963,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1078</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_type(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GxB_Vector_type(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_type(Pointer type, Pointer v);
 	/**
 	 * SPEC: GxB_Vector_type is an extension to the spec<br>
@@ -1986,7 +1995,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1116</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_BOOL(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, byte[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_BOOL(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_BOOL(Pointer w, LongByReference I, Pointer X, long nvals, Pointer dup);
 	/**
 	 * are not guaranteed in all implementations if it is not.<br>
@@ -2011,7 +2020,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1125</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_INT8(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, byte[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_INT8(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_INT8(Pointer w, LongByReference I, Pointer X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2035,7 +2044,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1134</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_UINT8(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, byte[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_UINT8(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_UINT8(Pointer w, LongByReference I, Pointer X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2059,7 +2068,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1143</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_INT16(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, short[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_INT16(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_INT16(Pointer w, LongByReference I, ShortByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2083,7 +2092,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1152</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_UINT16(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, short[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_UINT16(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_UINT16(Pointer w, LongByReference I, ShortByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2107,7 +2116,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1161</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_INT32(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, int[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_INT32(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_INT32(Pointer w, LongByReference I, IntByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2131,7 +2140,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1170</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_UINT32(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, int[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_UINT32(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_UINT32(Pointer w, LongByReference I, IntByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2155,7 +2164,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1179</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_INT64(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, long[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_INT64(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_INT64(Pointer w, LongByReference I, LongByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2179,7 +2188,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1188</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_UINT64(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, long[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_UINT64(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_UINT64(Pointer w, LongByReference I, LongByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2203,7 +2212,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1197</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_FP32(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, float[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_FP32(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.FloatByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_FP32(Pointer w, LongByReference I, FloatByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2227,7 +2236,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1206</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_FP64(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, double[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_FP64(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.DoubleByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_FP64(Pointer w, LongByReference I, DoubleByReference X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2251,7 +2260,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1215</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_build_UDT(graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, com.sun.jna.Pointer, long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Vector_build_UDT(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_build_UDT(Pointer w, LongByReference I, Pointer X, long nvals, Pointer dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
@@ -2274,7 +2283,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1278</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_BOOL(graphblas.GraphBLASLibrary.GrB_Vector, byte, long)} and {@link #GrB_Vector_setElement_BOOL(com.sun.jna.Pointer, byte, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_BOOL(Pointer w, byte x, long i);
 	/**
 	 * the type of w as needed.<br>
@@ -2295,7 +2304,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1285</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_INT8(graphblas.GraphBLASLibrary.GrB_Vector, byte, long)} and {@link #GrB_Vector_setElement_INT8(com.sun.jna.Pointer, byte, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_INT8(Pointer w, byte x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2315,7 +2324,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1292</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_UINT8(graphblas.GraphBLASLibrary.GrB_Vector, byte, long)} and {@link #GrB_Vector_setElement_UINT8(com.sun.jna.Pointer, byte, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_UINT8(Pointer w, byte x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2335,7 +2344,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1299</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_INT16(graphblas.GraphBLASLibrary.GrB_Vector, short, long)} and {@link #GrB_Vector_setElement_INT16(com.sun.jna.Pointer, short, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_INT16(Pointer w, short x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2355,7 +2364,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1306</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_UINT16(graphblas.GraphBLASLibrary.GrB_Vector, short, long)} and {@link #GrB_Vector_setElement_UINT16(com.sun.jna.Pointer, short, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_UINT16(Pointer w, short x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2375,7 +2384,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1313</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_INT32(graphblas.GraphBLASLibrary.GrB_Vector, int, long)} and {@link #GrB_Vector_setElement_INT32(com.sun.jna.Pointer, int, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_INT32(Pointer w, int x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2395,7 +2404,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1320</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_UINT32(graphblas.GraphBLASLibrary.GrB_Vector, int, long)} and {@link #GrB_Vector_setElement_UINT32(com.sun.jna.Pointer, int, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_UINT32(Pointer w, int x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2415,7 +2424,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1327</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_INT64(graphblas.GraphBLASLibrary.GrB_Vector, long, long)} and {@link #GrB_Vector_setElement_INT64(com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_INT64(Pointer w, long x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2435,7 +2444,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1334</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_UINT64(graphblas.GraphBLASLibrary.GrB_Vector, long, long)} and {@link #GrB_Vector_setElement_UINT64(com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_UINT64(Pointer w, long x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2455,7 +2464,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1341</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_FP32(graphblas.GraphBLASLibrary.GrB_Vector, float, long)} and {@link #GrB_Vector_setElement_FP32(com.sun.jna.Pointer, float, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_FP32(Pointer w, float x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2475,7 +2484,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1348</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_FP64(graphblas.GraphBLASLibrary.GrB_Vector, double, long)} and {@link #GrB_Vector_setElement_FP64(com.sun.jna.Pointer, double, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_FP64(Pointer w, double x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2495,7 +2504,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1355</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_setElement_UDT(graphblas.GraphBLASLibrary.GrB_Vector, com.sun.jna.Pointer, long)} and {@link #GrB_Vector_setElement_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_setElement_UDT(Pointer w, Pointer x, long i);
 	/**
 	 * w(i) = x<br>
@@ -2516,7 +2525,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1417</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_BOOL(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_BOOL(Pointer x, Pointer v, long i);
 	/**
 	 * Returns GrB_NO_VALUE if v(i) is not present, and x is unmodified.<br>
@@ -2537,7 +2546,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1424</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_INT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_INT8(Pointer x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2557,7 +2566,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1431</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_UINT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_UINT8(Pointer x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2577,7 +2586,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1438</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_INT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_INT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_INT16(ShortByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2597,7 +2606,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1445</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_UINT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_UINT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_UINT16(ShortByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2617,7 +2626,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1452</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_INT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_INT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_INT32(IntByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2637,7 +2646,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1459</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_UINT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_UINT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_UINT32(IntByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2657,7 +2666,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1466</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_INT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_INT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_INT64(LongByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2677,7 +2686,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1473</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_UINT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_UINT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_UINT64(LongByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2697,7 +2706,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1480</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_FP32(java.nio.FloatBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_FP32(com.sun.jna.ptr.FloatByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_FP32(FloatByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2717,7 +2726,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1487</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_FP64(java.nio.DoubleBuffer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_FP64(com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_FP64(DoubleByReference x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2737,7 +2746,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1494</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractElement_UDT(com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GrB_Vector_extractElement_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractElement_UDT(Pointer x, Pointer v, long i);
 	/**
 	 * x = v(i)<br>
@@ -2759,7 +2768,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1548</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_BOOL(java.nio.LongBuffer, java.nio.ByteBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_BOOL(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_BOOL(LongByReference I, Pointer X, LongByReference nvals, Pointer v);
 	/**
 	 * like [I,~,~] = find (v) in MATLAB.<br>
@@ -2782,7 +2791,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1556</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_INT8(java.nio.LongBuffer, java.nio.ByteBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_INT8(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_INT8(LongByReference I, Pointer X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2804,7 +2813,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1564</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_UINT8(java.nio.LongBuffer, java.nio.ByteBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_UINT8(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_UINT8(LongByReference I, Pointer X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2826,7 +2835,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1572</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_INT16(java.nio.LongBuffer, java.nio.ShortBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_INT16(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_INT16(LongByReference I, ShortByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2848,7 +2857,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1580</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_UINT16(java.nio.LongBuffer, java.nio.ShortBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_UINT16(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_UINT16(LongByReference I, ShortByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2870,7 +2879,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1588</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_INT32(java.nio.LongBuffer, java.nio.IntBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_INT32(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_INT32(LongByReference I, IntByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2892,7 +2901,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1596</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_UINT32(java.nio.LongBuffer, java.nio.IntBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_UINT32(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_UINT32(LongByReference I, IntByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2914,7 +2923,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1604</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_INT64(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_INT64(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_INT64(LongByReference I, LongByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2936,7 +2945,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1612</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_UINT64(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_UINT64(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_UINT64(LongByReference I, LongByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2958,7 +2967,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1620</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_FP32(java.nio.LongBuffer, java.nio.FloatBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_FP32(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.FloatByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_FP32(LongByReference I, FloatByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -2980,7 +2989,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1628</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_FP64(java.nio.LongBuffer, java.nio.DoubleBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_FP64(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_FP64(LongByReference I, DoubleByReference X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -3002,7 +3011,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1636</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extractTuples_UDT(java.nio.LongBuffer, com.sun.jna.Pointer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Vector)} and {@link #GrB_Vector_extractTuples_UDT(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extractTuples_UDT(LongByReference I, Pointer X, LongByReference nvals, Pointer v);
 	/**
 	 * [I,~,X] = find (v)<br>
@@ -3022,7 +3031,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1682</i><br>
 	 * @deprecated use the safer method {@link #GrB_Vector_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_free(Pointer v);
 	/**
 	 * ------------------------------------------------------------------------------<br>
@@ -3042,7 +3051,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1694</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_new(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Type, long, long)} and {@link #GrB_Matrix_new(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_new(Pointer A, Pointer type, long nrows, long ncols);
 	/**
 	 * nvals, and type methods return basic information about a matrix.<br>
@@ -3072,7 +3081,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1702</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_dup(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_dup(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_dup(Pointer C, Pointer A);
 	/**
 	 * make an exact copy of a matrix<br>
@@ -3097,7 +3106,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1708</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_clear(graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_clear(com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_clear(Pointer A);
 	/**
 	 * clear a matrix of all entries;<br>
@@ -3114,7 +3123,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1713</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_nrows(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_nrows(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_nrows(LongByReference nrows, Pointer A);
 	/**
 	 * get the number of rows of a matrix<br>
@@ -3132,7 +3141,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1719</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_ncols(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_ncols(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_ncols(LongByReference ncols, Pointer A);
 	/**
 	 * get the number of columns of a matrix<br>
@@ -3147,19 +3156,9 @@ public interface GraphBLASLibrary extends Library {
 	 * Original signature : <code>GrB_Info GrB_Matrix_nvals(GrB_Index*, const GrB_Matrix)</code><br>
 	 * @param nvals matrix has nvals entries<br>
 	 * @param A matrix to query<br>
-	 * <i>native declaration : /usr/include/GraphBLAS.h:1725</i><br>
-	 * @deprecated use the safer methods {@link #GrB_Matrix_nvals(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_nvals(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
-	 */
-	@Deprecated 
-	int GrB_Matrix_nvals(LongByReference nvals, Pointer A);
-	/**
-	 * get the number of entries in a matrix<br>
-	 * Original signature : <code>GrB_Info GrB_Matrix_nvals(GrB_Index*, const GrB_Matrix)</code><br>
-	 * @param nvals matrix has nvals entries<br>
-	 * @param A matrix to query<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1725</i>
 	 */
-	int GrB_Matrix_nvals(IntByReference nvals, GraphBLASLibrary.GrB_Matrix A);
+	int GrB_Matrix_nvals(LongBuffer nvals, GraphBLASLibrary.GrB_Matrix A);
 	/**
 	 * SPEC: GxB_Matrix_type is an extension to the spec<br>
 	 * get the type of a matrix<br>
@@ -3169,7 +3168,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1733</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_type(com.sun.jna.ptr.PointerByReference, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GxB_Matrix_type(com.sun.jna.ptr.PointerByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_type(Pointer type, Pointer A);
 	/**
 	 * SPEC: GxB_Matrix_type is an extension to the spec<br>
@@ -3202,7 +3201,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1764</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_BOOL(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, byte[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_BOOL(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_BOOL(Pointer C, LongByReference I, LongByReference J, Pointer X, long nvals, Pointer dup);
 	/**
 	 * details.<br>
@@ -3216,7 +3215,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param dup binary function to assemble duplicates<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1764</i>
 	 */
-	int GrB_Matrix_build_BOOL(GraphBLASLibrary.GrB_Matrix C, LongBuffer I, LongBuffer J, byte X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
+	int GrB_Matrix_build_BOOL(GraphBLASLibrary.GrB_Matrix C, long I[], long J[], boolean X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
 	 * Original signature : <code>GrB_Info GrB_Matrix_build_INT8(GrB_Matrix, const GrB_Index*, const GrB_Index*, const int8_t*, const GrB_Index, const GrB_BinaryOp)</code><br>
@@ -3229,7 +3228,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1774</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_INT8(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, byte[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_INT8(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_INT8(Pointer C, LongByReference I, LongByReference J, Pointer X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3255,7 +3254,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1784</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_UINT8(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, byte[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_UINT8(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_UINT8(Pointer C, LongByReference I, LongByReference J, Pointer X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3281,7 +3280,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1794</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_INT16(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, short[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_INT16(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_INT16(Pointer C, LongByReference I, LongByReference J, ShortByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3307,7 +3306,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1804</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_UINT16(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, short[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_UINT16(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_UINT16(Pointer C, LongByReference I, LongByReference J, ShortByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3333,7 +3332,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1814</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_INT32(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, int[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_INT32(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_INT32(Pointer C, LongByReference I, LongByReference J, IntByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3359,7 +3358,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1824</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_UINT32(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, int[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_UINT32(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_UINT32(Pointer C, LongByReference I, LongByReference J, IntByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3385,7 +3384,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1834</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_INT64(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, long[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_INT64(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_INT64(Pointer C, LongByReference I, LongByReference J, LongByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3411,7 +3410,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1844</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_UINT64(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, long[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_UINT64(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_UINT64(Pointer C, LongByReference I, LongByReference J, LongByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3437,7 +3436,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1854</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_FP32(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, float[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_FP32(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.FloatByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_FP32(Pointer C, LongByReference I, LongByReference J, FloatByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3463,7 +3462,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1864</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_FP64(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, double[], long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_FP64(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.DoubleByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_FP64(Pointer C, LongByReference I, LongByReference J, DoubleByReference X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3489,7 +3488,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1874</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_build_UDT(graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, java.nio.LongBuffer, com.sun.jna.Pointer, long, graphblas.GraphBLASLibrary.GrB_BinaryOp)} and {@link #GrB_Matrix_build_UDT(com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_build_UDT(Pointer C, LongByReference I, LongByReference J, Pointer X, long nvals, Pointer dup);
 	/**
 	 * build a matrix from (I,J,X) tuples<br>
@@ -3514,7 +3513,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1939</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_BOOL(graphblas.GraphBLASLibrary.GrB_Matrix, byte, long, long)} and {@link #GrB_Matrix_setElement_BOOL(com.sun.jna.Pointer, byte, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_BOOL(Pointer C, byte x, long i, long j);
 	/**
 	 * from the type of x to the type of C, as needed.<br>
@@ -3537,7 +3536,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1947</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_INT8(graphblas.GraphBLASLibrary.GrB_Matrix, byte, long, long)} and {@link #GrB_Matrix_setElement_INT8(com.sun.jna.Pointer, byte, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_INT8(Pointer C, byte x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3559,7 +3558,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1955</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_UINT8(graphblas.GraphBLASLibrary.GrB_Matrix, byte, long, long)} and {@link #GrB_Matrix_setElement_UINT8(com.sun.jna.Pointer, byte, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_UINT8(Pointer C, byte x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3581,7 +3580,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1963</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_INT16(graphblas.GraphBLASLibrary.GrB_Matrix, short, long, long)} and {@link #GrB_Matrix_setElement_INT16(com.sun.jna.Pointer, short, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_INT16(Pointer C, short x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3603,7 +3602,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1971</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_UINT16(graphblas.GraphBLASLibrary.GrB_Matrix, short, long, long)} and {@link #GrB_Matrix_setElement_UINT16(com.sun.jna.Pointer, short, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_UINT16(Pointer C, short x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3625,7 +3624,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1979</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_INT32(graphblas.GraphBLASLibrary.GrB_Matrix, int, long, long)} and {@link #GrB_Matrix_setElement_INT32(com.sun.jna.Pointer, int, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_INT32(Pointer C, int x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3647,7 +3646,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1987</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_UINT32(graphblas.GraphBLASLibrary.GrB_Matrix, int, long, long)} and {@link #GrB_Matrix_setElement_UINT32(com.sun.jna.Pointer, int, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_UINT32(Pointer C, int x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3669,7 +3668,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1995</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_INT64(graphblas.GraphBLASLibrary.GrB_Matrix, long, long, long)} and {@link #GrB_Matrix_setElement_INT64(com.sun.jna.Pointer, long, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_INT64(Pointer C, long x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3691,7 +3690,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2003</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_UINT64(graphblas.GraphBLASLibrary.GrB_Matrix, long, long, long)} and {@link #GrB_Matrix_setElement_UINT64(com.sun.jna.Pointer, long, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_UINT64(Pointer C, long x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3713,7 +3712,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2011</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_FP32(graphblas.GraphBLASLibrary.GrB_Matrix, float, long, long)} and {@link #GrB_Matrix_setElement_FP32(com.sun.jna.Pointer, float, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_FP32(Pointer C, float x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3735,7 +3734,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2019</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_FP64(graphblas.GraphBLASLibrary.GrB_Matrix, double, long, long)} and {@link #GrB_Matrix_setElement_FP64(com.sun.jna.Pointer, double, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_FP64(Pointer C, double x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3757,7 +3756,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2027</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_setElement_UDT(graphblas.GraphBLASLibrary.GrB_Matrix, com.sun.jna.Pointer, long, long)} and {@link #GrB_Matrix_setElement_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_setElement_UDT(Pointer C, Pointer x, long i, long j);
 	/**
 	 * C (i,j) = x<br>
@@ -3780,7 +3779,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2091</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_BOOL(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_BOOL(Pointer x, Pointer A, long i, long j);
 	/**
 	 * Returns GrB_NO_VALUE if A(i,j) is not present, and x is unmodified.<br>
@@ -3803,7 +3802,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2099</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_INT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_INT8(Pointer x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3825,7 +3824,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2107</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_UINT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_UINT8(Pointer x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3847,7 +3846,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2115</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_INT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_INT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_INT16(ShortByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3869,7 +3868,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2123</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_UINT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_UINT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_UINT16(ShortByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3891,7 +3890,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2131</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_INT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_INT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_INT32(IntByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3913,7 +3912,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2139</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_UINT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_UINT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_UINT32(IntByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3935,7 +3934,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2147</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_INT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_INT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_INT64(LongByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3957,7 +3956,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2155</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_UINT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_UINT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_UINT64(LongByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -3979,7 +3978,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2163</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_FP32(java.nio.FloatBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_FP32(com.sun.jna.ptr.FloatByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_FP32(FloatByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -4001,7 +4000,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2171</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_FP64(java.nio.DoubleBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_FP64(com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_FP64(DoubleByReference x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -4023,7 +4022,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2179</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_UDT(com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractElement_UDT(Pointer x, Pointer A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -4047,7 +4046,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2235</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_BOOL(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.ByteBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_BOOL(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_BOOL(LongByReference I, LongByReference J, Pointer X, LongByReference nvals, Pointer A);
 	/**
 	 * and X as NULL.  This is like [I,J,~] = find (A).<br>
@@ -4060,7 +4059,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param A matrix to extract tuples from<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2235</i>
 	 */
-	int GrB_Matrix_extractTuples_BOOL(LongBuffer I, LongBuffer J, ByteBuffer X, LongBuffer nvals, GraphBLASLibrary.GrB_Matrix A);
+	int GrB_Matrix_extractTuples_BOOL(long I[], long J[], boolean X[], LongByReference nvals, GraphBLASLibrary.GrB_Matrix A);
 	/**
 	 * [I,J,X] = find (A)<br>
 	 * Original signature : <code>GrB_Info GrB_Matrix_extractTuples_INT8(GrB_Index*, GrB_Index*, int8_t*, GrB_Index*, const GrB_Matrix)</code><br>
@@ -4072,7 +4071,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2244</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_INT8(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.ByteBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_INT8(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_INT8(LongByReference I, LongByReference J, Pointer X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4096,7 +4095,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2253</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_UINT8(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.ByteBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_UINT8(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_UINT8(LongByReference I, LongByReference J, Pointer X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4120,7 +4119,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2262</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_INT16(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.ShortBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_INT16(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_INT16(LongByReference I, LongByReference J, ShortByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4144,7 +4143,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2271</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_UINT16(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.ShortBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_UINT16(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.ShortByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_UINT16(LongByReference I, LongByReference J, ShortByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4168,7 +4167,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2280</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_INT32(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.IntBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_INT32(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_INT32(LongByReference I, LongByReference J, IntByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4192,7 +4191,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2289</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_UINT32(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.IntBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_UINT32(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.IntByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_UINT32(LongByReference I, LongByReference J, IntByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4216,7 +4215,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2298</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_INT64(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_INT64(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_INT64(LongByReference I, LongByReference J, LongByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4240,7 +4239,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2307</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_UINT64(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_UINT64(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_UINT64(LongByReference I, LongByReference J, LongByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4264,7 +4263,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2316</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_FP32(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.FloatBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_FP32(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.FloatByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_FP32(LongByReference I, LongByReference J, FloatByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4288,7 +4287,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2325</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_FP64(java.nio.LongBuffer, java.nio.LongBuffer, java.nio.DoubleBuffer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_FP64(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.DoubleByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_FP64(LongByReference I, LongByReference J, DoubleByReference X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4312,7 +4311,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2334</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extractTuples_UDT(java.nio.LongBuffer, java.nio.LongBuffer, com.sun.jna.Pointer, java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_Matrix)} and {@link #GrB_Matrix_extractTuples_UDT(com.sun.jna.ptr.LongByReference, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extractTuples_UDT(LongByReference I, LongByReference J, Pointer X, LongByReference nvals, Pointer A);
 	/**
 	 * [I,J,X] = find (A)<br>
@@ -4333,7 +4332,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2382</i><br>
 	 * @deprecated use the safer method {@link #GrB_Matrix_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_free(Pointer A);
 	/**
 	 * ------------------------------------------------------------------------------<br>
@@ -4342,7 +4341,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param A handle of matrix to free<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2382</i>
 	 */
-	int GrB_Matrix_free(PointerByReference A);
+	int GrB_Matrix_free(ByReference A);
 	/**
 	 * create a new descriptor<br>
 	 * Original signature : <code>GrB_Info GrB_Descriptor_new(GrB_Descriptor*)</code><br>
@@ -4350,7 +4349,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2430</i><br>
 	 * @deprecated use the safer method {@link #GrB_Descriptor_new(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Descriptor_new(Pointer descriptor);
 	/**
 	 * create a new descriptor<br>
@@ -4368,7 +4367,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2435</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Descriptor_set(graphblas.GraphBLASLibrary.GrB_Descriptor, int, int)} and {@link #GrB_Descriptor_set(com.sun.jna.Pointer, int, int)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Descriptor_set(Pointer desc, int field, int val);
 	/**
 	 * set a parameter in a descriptor<br>
@@ -4389,7 +4388,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2444</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Descriptor_get(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_Descriptor, int)} and {@link #GxB_Descriptor_get(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, int)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Descriptor_get(IntByReference val, Pointer desc, int field);
 	/**
 	 * SPEC: GxB_Descriptor_get is an extension to the spec<br>
@@ -4408,7 +4407,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2451</i><br>
 	 * @deprecated use the safer method {@link #GrB_Descriptor_free(com.sun.jna.ptr.PointerByReference)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Descriptor_free(Pointer descriptor);
 	/**
 	 * free a descriptor<br>
@@ -4431,7 +4430,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2521</i><br>
 	 * @deprecated use the safer methods {@link #GrB_mxm(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_mxm(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_mxm(Pointer C, Pointer Mask, Pointer accum, Pointer semiring, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * associative monoid.<br>
@@ -4460,7 +4459,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2532</i><br>
 	 * @deprecated use the safer methods {@link #GrB_vxm(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_vxm(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_vxm(Pointer w, Pointer mask, Pointer accum, Pointer semiring, Pointer u, Pointer A, Pointer desc);
 	/**
 	 * w'<Mask> = accum (w, u'*A)<br>
@@ -4488,7 +4487,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2543</i><br>
 	 * @deprecated use the safer methods {@link #GrB_mxv(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_mxv(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_mxv(Pointer w, Pointer mask, Pointer accum, Pointer semiring, Pointer A, Pointer u, Pointer desc);
 	/**
 	 * w<Mask> = accum (w, A*u)<br>
@@ -4517,7 +4516,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2574</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseMult_Vector_Semiring(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseMult_Vector_Semiring(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseMult_Vector_Semiring(Pointer w, Pointer mask, Pointer accum, Pointer semiring, Pointer u, Pointer v, Pointer desc);
 	/**
 	 * operator instead. For a monoid, the mult operator is the monoid operator.<br>
@@ -4546,7 +4545,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2585</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseMult_Vector_Monoid(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseMult_Vector_Monoid(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseMult_Vector_Monoid(Pointer w, Pointer mask, Pointer accum, Pointer monoid, Pointer u, Pointer v, Pointer desc);
 	/**
 	 * w<Mask> = accum (w, u.*v)<br>
@@ -4574,7 +4573,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2596</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseMult_Vector_BinaryOp(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseMult_Vector_BinaryOp(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseMult_Vector_BinaryOp(Pointer w, Pointer mask, Pointer accum, Pointer mult, Pointer u, Pointer v, Pointer desc);
 	/**
 	 * w<Mask> = accum (w, u.*v)<br>
@@ -4602,7 +4601,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2607</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseMult_Matrix_Semiring(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseMult_Matrix_Semiring(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseMult_Matrix_Semiring(Pointer C, Pointer Mask, Pointer accum, Pointer semiring, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, A.*B)<br>
@@ -4630,7 +4629,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2618</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseMult_Matrix_Monoid(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseMult_Matrix_Monoid(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseMult_Matrix_Monoid(Pointer C, Pointer Mask, Pointer accum, Pointer monoid, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, A.*B)<br>
@@ -4658,7 +4657,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2629</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseMult_Matrix_BinaryOp(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseMult_Matrix_BinaryOp(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseMult_Matrix_BinaryOp(Pointer C, Pointer Mask, Pointer accum, Pointer mult, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, A.*B)<br>
@@ -4687,7 +4686,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2696</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseAdd_Vector_Semiring(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseAdd_Vector_Semiring(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseAdd_Vector_Semiring(Pointer w, Pointer mask, Pointer accum, Pointer semiring, Pointer u, Pointer v, Pointer desc);
 	/**
 	 * operator instead. For a monoid, the mult operator is the monoid operator.<br>
@@ -4716,7 +4715,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2707</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseAdd_Vector_Monoid(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseAdd_Vector_Monoid(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseAdd_Vector_Monoid(Pointer w, Pointer mask, Pointer accum, Pointer monoid, Pointer u, Pointer v, Pointer desc);
 	/**
 	 * w<Mask> = accum (w, u+v)<br>
@@ -4744,7 +4743,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2718</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseAdd_Vector_BinaryOp(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseAdd_Vector_BinaryOp(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseAdd_Vector_BinaryOp(Pointer w, Pointer mask, Pointer accum, Pointer add, Pointer u, Pointer v, Pointer desc);
 	/**
 	 * w<Mask> = accum (w, u+v)<br>
@@ -4772,7 +4771,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2729</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseAdd_Matrix_Semiring(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseAdd_Matrix_Semiring(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseAdd_Matrix_Semiring(Pointer C, Pointer Mask, Pointer accum, Pointer semiring, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, A+B)<br>
@@ -4800,7 +4799,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2740</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseAdd_Matrix_Monoid(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseAdd_Matrix_Monoid(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseAdd_Matrix_Monoid(Pointer C, Pointer Mask, Pointer accum, Pointer monoid, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, A+B)<br>
@@ -4828,7 +4827,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2751</i><br>
 	 * @deprecated use the safer methods {@link #GrB_eWiseAdd_Matrix_BinaryOp(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_eWiseAdd_Matrix_BinaryOp(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_eWiseAdd_Matrix_BinaryOp(Pointer C, Pointer Mask, Pointer accum, Pointer add, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, A+B)<br>
@@ -4856,7 +4855,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2811</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_extract(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_extract(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_extract(Pointer w, Pointer mask, Pointer accum, Pointer u, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask> = accum (w, u(I))<br>
@@ -4886,7 +4885,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2822</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_extract(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_extract(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_extract(Pointer C, Pointer Mask, Pointer accum, Pointer A, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, A(I,J))<br>
@@ -4917,7 +4916,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2835</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Col_extract(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, long, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Col_extract(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Col_extract(Pointer w, Pointer mask, Pointer accum, Pointer A, LongByReference I, long ni, long j, Pointer desc);
 	/**
 	 * w<mask> = accum (w, A(I,j))<br>
@@ -4947,7 +4946,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2958</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign(Pointer w, Pointer mask, Pointer accum, Pointer u, LongByReference I, long ni, Pointer desc);
 	/**
 	 * and in how duplicate indices are treated for scalar expansion.<br>
@@ -4978,7 +4977,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2969</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign(Pointer C, Pointer Mask, Pointer accum, Pointer A, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),A)<br>
@@ -5009,7 +5008,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2982</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Col_subassign(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, long, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Col_subassign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Col_subassign(Pointer C, Pointer mask, Pointer accum, Pointer u, LongByReference I, long ni, long j, Pointer desc);
 	/**
 	 * C(I,j)<mask> = accum (C(I,j),u)<br>
@@ -5039,7 +5038,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2994</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Row_subassign(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Row_subassign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Row_subassign(Pointer C, Pointer mask, Pointer accum, Pointer u, long i, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(i,J)<mask'> = accum (C(i,J),u')<br>
@@ -5069,7 +5068,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3016</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_BOOL(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_BOOL(Pointer w, Pointer mask, Pointer accum, byte x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * Each of these can be used with their generic name, GxB_subassign.<br>
@@ -5098,7 +5097,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3027</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_INT8(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_INT8(Pointer w, Pointer mask, Pointer accum, byte x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5126,7 +5125,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3038</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_UINT8(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_UINT8(Pointer w, Pointer mask, Pointer accum, byte x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5154,7 +5153,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3049</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_INT16(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_INT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_INT16(Pointer w, Pointer mask, Pointer accum, short x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5182,7 +5181,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3060</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_UINT16(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_UINT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_UINT16(Pointer w, Pointer mask, Pointer accum, short x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5210,7 +5209,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3071</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_INT32(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_INT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_INT32(Pointer w, Pointer mask, Pointer accum, int x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5238,7 +5237,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3082</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_UINT32(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_UINT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_UINT32(Pointer w, Pointer mask, Pointer accum, int x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5266,7 +5265,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3093</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_INT64(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_INT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_INT64(Pointer w, Pointer mask, Pointer accum, long x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5294,7 +5293,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3104</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_UINT64(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_UINT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_UINT64(Pointer w, Pointer mask, Pointer accum, long x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5322,7 +5321,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3115</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_FP32(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, float, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_FP32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, float, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_FP32(Pointer w, Pointer mask, Pointer accum, float x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5350,7 +5349,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3126</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_FP64(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, double, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_FP64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, double, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_FP64(Pointer w, Pointer mask, Pointer accum, double x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5378,7 +5377,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3137</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_subassign_UDT(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, com.sun.jna.Pointer, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_subassign_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_subassign_UDT(Pointer w, Pointer mask, Pointer accum, Pointer x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w(I)<mask> = accum (w(I),x)<br>
@@ -5409,7 +5408,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3158</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_BOOL(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_BOOL(Pointer C, Pointer Mask, Pointer accum, byte x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * Each of these can be used with their generic name, GxB_subassign.<br>
@@ -5442,7 +5441,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3171</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_INT8(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_INT8(Pointer C, Pointer Mask, Pointer accum, byte x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5474,7 +5473,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3184</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_UINT8(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_UINT8(Pointer C, Pointer Mask, Pointer accum, byte x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5506,7 +5505,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3197</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_INT16(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_INT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_INT16(Pointer C, Pointer Mask, Pointer accum, short x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5538,7 +5537,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3210</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_UINT16(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_UINT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_UINT16(Pointer C, Pointer Mask, Pointer accum, short x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5570,7 +5569,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3223</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_INT32(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_INT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_INT32(Pointer C, Pointer Mask, Pointer accum, int x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5602,7 +5601,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3236</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_UINT32(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_UINT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_UINT32(Pointer C, Pointer Mask, Pointer accum, int x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5634,7 +5633,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3249</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_INT64(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_INT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_INT64(Pointer C, Pointer Mask, Pointer accum, long x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5666,7 +5665,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3262</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_UINT64(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_UINT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_UINT64(Pointer C, Pointer Mask, Pointer accum, long x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5698,7 +5697,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3275</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_FP32(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, float, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_FP32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, float, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_FP32(Pointer C, Pointer Mask, Pointer accum, float x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5730,7 +5729,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3288</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_FP64(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, double, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_FP64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, double, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_FP64(Pointer C, Pointer Mask, Pointer accum, double x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5762,7 +5761,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3301</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_subassign_UDT(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, com.sun.jna.Pointer, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_subassign_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_subassign_UDT(Pointer C, Pointer Mask, Pointer accum, Pointer x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C(I,J)<Mask> = accum (C(I,J),x)<br>
@@ -5793,7 +5792,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3418</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign(Pointer w, Pointer mask, Pointer accum, Pointer u, LongByReference I, long ni, Pointer desc);
 	/**
 	 * Each of these can be used with their generic name, GrB_assign.<br>
@@ -5824,7 +5823,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3429</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign(Pointer C, Pointer Mask, Pointer accum, Pointer A, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),A)<br>
@@ -5855,7 +5854,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3442</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Col_assign(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, java.nio.LongBuffer, long, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Col_assign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Col_assign(Pointer C, Pointer mask, Pointer accum, Pointer u, LongByReference I, long ni, long j, Pointer desc);
 	/**
 	 * C<mask>(I,j) = accum (C(I,j),u)<br>
@@ -5885,7 +5884,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3454</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Row_assign(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Vector, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Row_assign(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Row_assign(Pointer C, Pointer mask, Pointer accum, Pointer u, long i, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<mask'>(i,J) = accum (C(i,J),u')<br>
@@ -5915,7 +5914,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3476</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_BOOL(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_BOOL(Pointer w, Pointer mask, Pointer accum, byte x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * Each of these can be used with their generic name, GrB_assign.<br>
@@ -5944,7 +5943,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3487</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_INT8(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_INT8(Pointer w, Pointer mask, Pointer accum, byte x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -5972,7 +5971,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3498</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_UINT8(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_UINT8(Pointer w, Pointer mask, Pointer accum, byte x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6000,7 +5999,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3509</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_INT16(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_INT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_INT16(Pointer w, Pointer mask, Pointer accum, short x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6028,7 +6027,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3520</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_UINT16(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_UINT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_UINT16(Pointer w, Pointer mask, Pointer accum, short x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6056,7 +6055,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3531</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_INT32(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_INT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_INT32(Pointer w, Pointer mask, Pointer accum, int x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6084,7 +6083,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3542</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_UINT32(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_UINT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_UINT32(Pointer w, Pointer mask, Pointer accum, int x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6112,7 +6111,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3553</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_INT64(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_INT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_INT64(Pointer w, Pointer mask, Pointer accum, long x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6140,7 +6139,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3564</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_UINT64(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_UINT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_UINT64(Pointer w, Pointer mask, Pointer accum, long x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6168,7 +6167,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3575</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_FP32(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, float, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_FP32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, float, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_FP32(Pointer w, Pointer mask, Pointer accum, float x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6196,7 +6195,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3586</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_FP64(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, double, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_FP64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, double, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_FP64(Pointer w, Pointer mask, Pointer accum, double x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6224,7 +6223,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3597</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_UDT(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, com.sun.jna.Pointer, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_assign_UDT(Pointer w, Pointer mask, Pointer accum, Pointer x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -6255,7 +6254,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3618</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_BOOL(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_BOOL(Pointer C, Pointer Mask, Pointer accum, byte x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * Each of these can be used with their generic name, GrB_assign.<br>
@@ -6288,7 +6287,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3631</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_INT8(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_INT8(Pointer C, Pointer Mask, Pointer accum, byte x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6320,7 +6319,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3644</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_UINT8(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_UINT8(Pointer C, Pointer Mask, Pointer accum, byte x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6352,7 +6351,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3657</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_INT16(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_INT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_INT16(Pointer C, Pointer Mask, Pointer accum, short x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6384,7 +6383,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3670</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_UINT16(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, short, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_UINT16(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, short, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_UINT16(Pointer C, Pointer Mask, Pointer accum, short x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6416,7 +6415,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3683</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_INT32(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_INT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_INT32(Pointer C, Pointer Mask, Pointer accum, int x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6448,7 +6447,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3696</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_UINT32(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, int, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_UINT32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, int, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_UINT32(Pointer C, Pointer Mask, Pointer accum, int x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6480,7 +6479,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3709</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_INT64(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_INT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_INT64(Pointer C, Pointer Mask, Pointer accum, long x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6512,7 +6511,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3722</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_UINT64(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, long, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_UINT64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_UINT64(Pointer C, Pointer Mask, Pointer accum, long x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6544,7 +6543,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3735</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_FP32(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, float, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_FP32(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, float, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_FP32(Pointer C, Pointer Mask, Pointer accum, float x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6576,7 +6575,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3748</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_FP64(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, double, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_FP64(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, double, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_FP64(Pointer C, Pointer Mask, Pointer accum, double x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6608,7 +6607,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3761</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_assign_UDT(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, com.sun.jna.Pointer, java.nio.LongBuffer, long, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_assign_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.ptr.LongByReference, long, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_assign_UDT(Pointer C, Pointer Mask, Pointer accum, Pointer x, LongByReference I, long ni, LongByReference J, long nj, Pointer desc);
 	/**
 	 * C<Mask>(I,J) = accum (C(I,J),x)<br>
@@ -6638,7 +6637,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3881</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_apply(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_UnaryOp, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_apply(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_apply(Pointer w, Pointer mask, Pointer accum, Pointer op, Pointer u, Pointer desc);
 	/**
 	 * The input matrix A may be optionally transposed first, via the descriptor.<br>
@@ -6665,7 +6664,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3891</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_apply(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_UnaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_apply(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_apply(Pointer C, Pointer Mask, Pointer accum, Pointer op, Pointer A, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, op(A)) or op(A')<br>
@@ -6693,7 +6692,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3930</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_select(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GxB_SelectOp, graphblas.GraphBLASLibrary.GrB_Vector, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Vector_select(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_select(Pointer w, Pointer mask, Pointer accum, Pointer op, Pointer u, Pointer k, Pointer desc);
 	/**
 	 * The input matrix A may be optionally transposed first, via the descriptor.<br>
@@ -6722,7 +6721,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3941</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_select(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GxB_SelectOp, graphblas.GraphBLASLibrary.GrB_Matrix, com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_Matrix_select(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_select(Pointer C, Pointer Mask, Pointer accum, Pointer op, Pointer A, Pointer k, Pointer desc);
 	/**
 	 * C<Mask> = accum (C, op(A,k)) or op(A',k)<br>
@@ -6750,7 +6749,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3982</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_Monoid(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_Monoid(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_Monoid(Pointer w, Pointer mask, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * a row vector and sums each column.<br>
@@ -6777,7 +6776,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3992</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_BinaryOp(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_BinaryOp(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_BinaryOp(Pointer w, Pointer mask, Pointer accum, Pointer op, Pointer A, Pointer desc);
 	/**
 	 * w<mask> = accum (w,reduce(A))<br>
@@ -6803,7 +6802,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4020</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_BOOL(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_BOOL(Pointer c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * used in the future.<br>
@@ -6828,7 +6827,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4029</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_INT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_INT8(Pointer c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -6852,7 +6851,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4038</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_UINT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_UINT8(Pointer c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -6876,7 +6875,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4047</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_INT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_INT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_INT16(ShortByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -6900,7 +6899,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4056</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_UINT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_UINT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_UINT16(ShortByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -6924,7 +6923,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4065</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_INT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_INT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_INT32(IntByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -6948,7 +6947,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4074</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_UINT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_UINT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_UINT32(IntByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -6972,7 +6971,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4083</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_INT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_INT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_INT64(LongByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -6996,7 +6995,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4092</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_UINT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_UINT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_UINT64(LongByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -7020,7 +7019,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4101</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_FP32(java.nio.FloatBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_FP32(com.sun.jna.ptr.FloatByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_FP32(FloatByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -7044,7 +7043,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4110</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_FP64(java.nio.DoubleBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_FP64(com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_FP64(DoubleByReference c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -7068,7 +7067,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4119</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_UDT(com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Vector_reduce_UDT(Pointer c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
@@ -7093,7 +7092,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4142</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_BOOL(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_BOOL(Pointer c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * mask.<br>
@@ -7118,7 +7117,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4151</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_INT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_INT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_INT8(Pointer c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7142,7 +7141,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4160</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_UINT8(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_UINT8(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_UINT8(Pointer c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7166,7 +7165,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4169</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_INT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_INT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_INT16(ShortByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7190,7 +7189,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4178</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_UINT16(java.nio.ShortBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_UINT16(com.sun.jna.ptr.ShortByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_UINT16(ShortByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7214,7 +7213,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4187</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_INT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_INT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_INT32(IntByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7238,7 +7237,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4196</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_UINT32(java.nio.IntBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_UINT32(com.sun.jna.ptr.IntByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_UINT32(IntByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7262,7 +7261,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4205</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_INT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_INT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_INT64(LongByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7286,7 +7285,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4214</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_UINT64(java.nio.LongBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_UINT64(com.sun.jna.ptr.LongByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_UINT64(LongByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7310,7 +7309,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4223</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_FP32(java.nio.FloatBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_FP32(com.sun.jna.ptr.FloatByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_FP32(FloatByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7334,7 +7333,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4232</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_FP64(java.nio.DoubleBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_FP64(com.sun.jna.ptr.DoubleByReference, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_FP64(DoubleByReference c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7358,7 +7357,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4241</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Matrix_reduce_UDT(com.sun.jna.Pointer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Matrix_reduce_UDT(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_Matrix_reduce_UDT(Pointer c, Pointer accum, Pointer monoid, Pointer A, Pointer desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (A))<br>
@@ -7383,7 +7382,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4352</i><br>
 	 * @deprecated use the safer methods {@link #GrB_transpose(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_transpose(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GrB_transpose(Pointer C, Pointer Mask, Pointer accum, Pointer A, Pointer desc);
 	/**
 	 * operation, C<Mask> = accum (C,A), or C<Mask> = accum (C,A') by default.<br>
@@ -7412,7 +7411,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4802</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Matrix_resize(graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GxB_Matrix_resize(com.sun.jna.Pointer, long, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Matrix_resize(Pointer A, long nrows_new, long ncols_new);
 	/**
 	 * vector are deleted<br>
@@ -7432,7 +7431,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4809</i><br>
 	 * @deprecated use the safer methods {@link #GxB_Vector_resize(graphblas.GraphBLASLibrary.GrB_Vector, long)} and {@link #GxB_Vector_resize(com.sun.jna.Pointer, long)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_Vector_resize(Pointer u, long nrows_new);
 	/**
 	 * change the size of a vector<br>
@@ -7456,7 +7455,7 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4833</i><br>
 	 * @deprecated use the safer methods {@link #GxB_kron(graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GxB_kron(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated 
+	@Deprecated
 	int GxB_kron(Pointer C, Pointer Mask, Pointer accum, Pointer op, Pointer A, Pointer B, Pointer desc);
 	/**
 	 * ------------------------------------------------------------------------------<br>

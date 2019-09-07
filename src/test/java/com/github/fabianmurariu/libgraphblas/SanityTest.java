@@ -57,7 +57,7 @@ public class SanityTest {
             g.GrB_init(GraphBLASLibrary.GrB_Mode.GrB_BLOCKING);
             GraphBLASLibrary.GrB_Matrix_ByReference grBM = new GraphBLASLibrary.GrB_Matrix_ByReference();
             Assert.assertEquals(0, g.GrB_Matrix_new(grBM, g.GrB_INT8, 5, 5));
-            Assert.assertEquals(0, g.GrB_Matrix_setElement_INT8(grBM.getValue(), (byte)8, 4, 4));
+            Assert.assertEquals(0, g.GrB_Matrix_setElement_INT8(grBM.getValue(), (byte) 8, 4, 4));
             IntByReference fakeBool2 = new IntByReference();
             Assert.assertEquals(0, g.GrB_Matrix_extractElement_INT8(fakeBool2, grBM.getValue(), 4, 4));
             Assert.assertEquals(8, fakeBool2.getValue());
@@ -74,13 +74,13 @@ public class SanityTest {
             g.GrB_init(GraphBLASLibrary.GrB_Mode.GrB_BLOCKING);
             GraphBLASLibrary.GrB_Matrix_ByReference grBM = new GraphBLASLibrary.GrB_Matrix_ByReference();
             Assert.assertEquals(0, g.GrB_Matrix_new(grBM, g.GrB_INT8, 5, 5));
-            IntByReference intByReference0 = new IntByReference();
-            Assert.assertEquals(0, g.GrB_Matrix_nvals(intByReference0,grBM.getValue()));
-            Assert.assertEquals(0, intByReference0.getValue());
-            Assert.assertEquals(0, g.GrB_Matrix_setElement_INT8(grBM.getValue(), (byte)8, 4, 4));
-            IntByReference intByReference = new IntByReference();
-            Assert.assertEquals(0, g.GrB_Matrix_nvals(intByReference,grBM.getValue()));
-            Assert.assertEquals(1, intByReference.getValue());
+            LongBuffer intByReference0 = LongBuffer.allocate(8);
+            Assert.assertEquals(0, g.GrB_Matrix_nvals(intByReference0, grBM.getValue()));
+            Assert.assertEquals(0, intByReference0.get());
+            Assert.assertEquals(0, g.GrB_Matrix_setElement_INT8(grBM.getValue(), (byte) 8, 4, 4));
+            LongBuffer intByReference = LongBuffer.allocate(8);
+            Assert.assertEquals(0, g.GrB_Matrix_nvals(intByReference, grBM.getValue()));
+            Assert.assertEquals(1, intByReference.get());
         } finally {
             g.GrB_wait();
             g.GrB_finalize();
@@ -91,16 +91,19 @@ public class SanityTest {
 //    @Ignore
     public void testBuildMatrixINT8() {
         GraphBLASLibrary g = GraphBLASLibrary.INSTANCE;
-
+        GraphBLASLibrary.GrB_Matrix_ByReference grBM = null;
         try {
             g.GrB_init(GraphBLASLibrary.GrB_Mode.GrB_BLOCKING);
-            GraphBLASLibrary.GrB_Matrix_ByReference grBM = new GraphBLASLibrary.GrB_Matrix_ByReference();
+            grBM = new GraphBLASLibrary.GrB_Matrix_ByReference();
             Assert.assertEquals(0, g.GrB_Matrix_new(grBM, g.GrB_INT8, 2, 2));
             long i[] = {0};
             long j[] = {0};
             byte xs[] = {2};
-            Assert.assertEquals(0, g.GrB_Matrix_build_INT8(grBM.getValue(), i ,j,  xs, 1L, g.GrB_SECOND_INT8));
+            Assert.assertEquals(0, g.GrB_Matrix_build_INT8(grBM.getValue(), i, j, xs, 1L, g.GrB_SECOND_INT8));
         } finally {
+            if (grBM != null) {
+                Assert.assertEquals(0, g.GrB_Matrix_free(grBM));
+            }
             g.GrB_wait();
             g.GrB_finalize();
         }
