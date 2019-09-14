@@ -11,25 +11,25 @@ sealed trait GrBCode {
 object GrBCode {
 
   @inline
-  def fromInt(i: Int): GrBCode = i match {
+  def fromInt(f : => Int)(implicit N:NativeMode): GrBCode = f match {
     case 0 => Success
     case 1 => NoValue
-    case 2 => throw UnInitializedObject
-    case 3 => throw InvalidObject
-    case 4 => throw NullPointer
-    case 5 => throw InvalidValue
-    case 6 => throw InvalidIndex
-    case 7 => throw DomainMismatch
-    case 8 => throw DimensionMismatch
-    case 9 => throw OutputNotEmpty
-    case 10 => throw OutOfMemory
-    case 11 => throw InsufficientSpace
-    case 12 => throw IndexOutOfBounds
-    case 13 => throw Panic
+    case 2 => throw UnInitializedObject(N.g.GrB_error())
+    case 3 => throw InvalidObject(N.g.GrB_error())
+    case 4 => throw NullPointer(N.g.GrB_error())
+    case 5 => throw InvalidValue(N.g.GrB_error())
+    case 6 => throw InvalidIndex(N.g.GrB_error())
+    case 7 => throw DomainMismatch(N.g.GrB_error())
+    case 8 => throw DimensionMismatch(N.g.GrB_error())
+    case 9 => throw OutputNotEmpty(N.g.GrB_error())
+    case 10 => throw OutOfMemory(N.g.GrB_error())
+    case 11 => throw InsufficientSpace(N.g.GrB_error())
+    case 12 => throw IndexOutOfBounds(N.g.GrB_error())
+    case 13 => throw Panic(N.g.GrB_error())
   }
 }
 
-sealed trait GrBError extends RuntimeException with GrBCode {
+sealed abstract class GrBError(msg:String) extends RuntimeException(msg) with GrBCode {
   override def isError: Boolean = true
 }
 
@@ -37,26 +37,15 @@ case object Success extends GrBCode
 
 case object NoValue extends GrBCode // specific when looking for A(i, j) and it's not found
 
-case object UnInitializedObject extends GrBError
-
-case object InvalidObject extends GrBError
-
-case object NullPointer extends GrBError
-
-case object InvalidValue extends GrBError
-
-case object InvalidIndex extends GrBError
-
-case object DomainMismatch extends GrBError
-
-case object DimensionMismatch extends GrBError
-
-case object OutputNotEmpty extends GrBError
-
-case object OutOfMemory extends GrBError
-
-case object InsufficientSpace extends GrBError
-
-case object IndexOutOfBounds extends GrBError
-
-case object Panic extends GrBError
+case class UnInitializedObject(msg:String) extends GrBError(msg)
+case class InvalidObject(msg:String) extends GrBError(msg)
+case class NullPointer(msg:String) extends GrBError(msg)
+case class InvalidValue(msg:String) extends GrBError(msg)
+case class InvalidIndex(msg:String) extends GrBError(msg)
+case class DomainMismatch(msg:String) extends GrBError(msg)
+case class DimensionMismatch(msg:String) extends GrBError(msg)
+case class OutputNotEmpty(msg:String) extends GrBError(msg)
+case class OutOfMemory(msg:String) extends GrBError(msg)
+case class InsufficientSpace(msg:String) extends GrBError(msg)
+case class IndexOutOfBounds(msg:String) extends GrBError(msg)
+case class Panic(msg:String) extends GrBError(msg)

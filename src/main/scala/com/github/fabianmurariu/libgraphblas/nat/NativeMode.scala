@@ -4,8 +4,6 @@ import cats.Applicative
 import cats.effect.{IO, Resource}
 import graphblas.GraphBLASLibrary
 
-import scala.concurrent.BlockContext
-
 sealed trait NativeMode {
   val g: GraphBLASLibrary
 }
@@ -29,7 +27,7 @@ object NativeMode {
         new NonBlocking(g)
     }
   })(mode => F.pure {
-    GrBCode.fromInt(mode.g.GrB_wait())
-    GrBCode.fromInt(mode.g.GrB_finalize())
+    GrBCode.fromInt(mode.g.GrB_wait())(mode)
+    GrBCode.fromInt(mode.g.GrB_finalize())(mode)
   })
 }

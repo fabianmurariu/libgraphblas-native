@@ -4,10 +4,11 @@ lazy val root = (project in file("."))
     scalaVersion := "2.12.7",
     libraryDependencies ++= Seq(
       "junit" % "junit" % "4.12" % Test,
+      "com.novocode" % "junit-interface" % "0.11" % Test,
       "net.java.dev.jna" % "jna" % "5.3.1",
       "com.nativelibs4java" % "jnaerator-runtime" % "0.12",
       "org.typelevel" %% "cats-effect" % "1.3.1",
-      "org.scalatest" %% "scalatest" % "3.0.8" % "test",
+      "org.scalatest" %% "scalatest" % "3.0.8" % Test,
       "org.scalactic" %% "scalactic" % "3.0.8",
       "com.github.mpilquist" %% "simulacrum" % "0.19.0"
     ),

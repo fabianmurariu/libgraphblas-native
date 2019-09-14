@@ -1,11 +1,7 @@
 package graphblas;
 import com.ochafik.lang.jnaerator.runtime.NativeSize;
 import com.ochafik.lang.jnaerator.runtime.NativeSizeByReference;
-import com.sun.jna.Library;
-import com.sun.jna.Native;
-import com.sun.jna.NativeLibrary;
-import com.sun.jna.Pointer;
-import com.sun.jna.PointerType;
+import com.sun.jna.*;
 import com.sun.jna.ptr.*;
 
 import java.nio.ByteBuffer;
@@ -35,14 +31,22 @@ public interface GraphBLASLibrary extends Library {
 	 */
 	GrB_Type GrB_BOOL = new GrB_Type(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_BOOL").getPointer(0));
 	GrB_Type GrB_INT8 = new GrB_Type(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_INT8").getPointer(0));
+	GrB_Type GrB_INT32 = new GrB_Type(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_INT32").getPointer(0));
 
 	default GrB_Type GrB_BOOLm() {
 		return GrB_BOOL;
 	}
 
+	default GrB_Type GrB_INT32m() {
+		return GrB_INT32;
+	}
+
 	GrB_BinaryOp GrB_SECOND_FP64 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_FP64").getPointer(0));
 	GrB_BinaryOp GrB_SECOND_INT8 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_INT8").getPointer(0));
 	GrB_BinaryOp GrB_SECOND_BOOL = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_BOOL").getPointer(0));
+	GrB_BinaryOp GrB_LOR= new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_LOR").getPointer(0));
+	GrB_BinaryOp GrB_LAND= new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_LAND").getPointer(0));
+	NativeLong GrB_ALL = JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_ALL").getNativeLong(0);
 
 	default GrB_BinaryOp GrBSecondBool(){
 		return GrB_SECOND_BOOL;
@@ -1346,7 +1350,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param identity identity value of the monoid<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:823</i>
 	 */
-	int GrB_Monoid_new_BOOL(PointerByReference monoid, GraphBLASLibrary.GrB_BinaryOp op, byte identity);
+	int GrB_Monoid_new_BOOL(GrB_Monoid_ByReference monoid, GraphBLASLibrary.GrB_BinaryOp op, boolean identity);
 	/**
 	 * the binary_op type.  The binary_op's three types must all be the same.<br>
 	 * create a new boolean monoid<br>
@@ -1760,7 +1764,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param multiply multiply operator of the semiring<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:984</i>
 	 */
-	int GrB_Semiring_new(PointerByReference semiring, GraphBLASLibrary.GrB_Monoid add, GraphBLASLibrary.GrB_BinaryOp multiply);
+	int GrB_Semiring_new(GrB_Semiring_ByReference semiring, GraphBLASLibrary.GrB_Monoid add, GraphBLASLibrary.GrB_BinaryOp multiply);
 	/**
 	 * create a semiring<br>
 	 * Original signature : <code>GrB_Info GrB_Semiring_new(GrB_Semiring*, const GrB_Monoid, const GrB_BinaryOp)</code><br>
@@ -1865,7 +1869,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param n vector dimension is n-by-1<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1046</i>
 	 */
-	int GrB_Vector_new(PointerByReference v, GraphBLASLibrary.GrB_Type type, long n);
+	int GrB_Vector_new(GrB_Vector_ByReference v, GraphBLASLibrary.GrB_Type type, long n);
 	/**
 	 * and type methods return basic information about a vector.<br>
 	 * create a new vector with no entries<br>
@@ -2008,7 +2012,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param dup binary function to assemble duplicates<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1116</i>
 	 */
-	int GrB_Vector_build_BOOL(GraphBLASLibrary.GrB_Vector w, LongBuffer I, byte X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
+	int GrB_Vector_build_BOOL(GraphBLASLibrary.GrB_Vector w, long I[], boolean X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_build_INT8(GrB_Vector, const GrB_Index*, const int8_t*, const GrB_Index, const GrB_BinaryOp)</code><br>
@@ -2128,7 +2132,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param dup binary function to assemble duplicates<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1161</i>
 	 */
-	int GrB_Vector_build_INT32(GraphBLASLibrary.GrB_Vector w, LongBuffer I, int X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
+	int GrB_Vector_build_INT32(GraphBLASLibrary.GrB_Vector w, long I[], int X[], long nvals, GraphBLASLibrary.GrB_BinaryOp dup);
 	/**
 	 * build a vector from (I,X) tuples<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_build_UINT32(GrB_Vector, const GrB_Index*, const uint32_t*, const GrB_Index, const GrB_BinaryOp)</code><br>
@@ -2294,7 +2298,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param i row index<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1278</i>
 	 */
-	int GrB_Vector_setElement_BOOL(GraphBLASLibrary.GrB_Vector w, byte x, long i);
+	int GrB_Vector_setElement_BOOL(GraphBLASLibrary.GrB_Vector w, boolean x, long i);
 	/**
 	 * w(i) = x<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_setElement_INT8(GrB_Vector, const int8_t, const GrB_Index)</code><br>
@@ -3040,7 +3044,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param v handle of vector to free<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1682</i>
 	 */
-	int GrB_Vector_free(PointerByReference v);
+	int GrB_Vector_free(ByReference v);
 	/**
 	 * nvals, and type methods return basic information about a matrix.<br>
 	 * create a new matrix with no entries<br>
@@ -3776,21 +3780,9 @@ public interface GraphBLASLibrary extends Library {
 	 * @param A matrix to extract a scalar from<br>
 	 * @param i row index<br>
 	 * @param j column index<br>
-	 * <i>native declaration : /usr/include/GraphBLAS.h:2091</i><br>
-	 * @deprecated use the safer methods {@link #GrB_Matrix_extractElement_BOOL(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_Matrix, long, long)} and {@link #GrB_Matrix_extractElement_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, long, long)} instead
-	 */
-	@Deprecated
-	int GrB_Matrix_extractElement_BOOL(Pointer x, Pointer A, long i, long j);
-	/**
-	 * Returns GrB_NO_VALUE if A(i,j) is not present, and x is unmodified.<br>
-	 * x = A(i,j)<br>
-	 * Original signature : <code>GrB_Info GrB_Matrix_extractElement_BOOL(bool*, const GrB_Matrix, const GrB_Index, const GrB_Index)</code><br>
-	 * @param x extracted scalar<br>
-	 * @param A matrix to extract a scalar from<br>
-	 * @param i row index<br>
-	 * @param j column index<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2091</i>
 	 */
+	int GrB_Matrix_extractElement_BOOL(ByteByReference x, GraphBLASLibrary.GrB_Matrix A, long i, long j);
 	int GrB_Matrix_extractElement_BOOL(IntByReference x, GraphBLASLibrary.GrB_Matrix A, long i, long j);
 	/**
 	 * x = A(i,j)<br>
@@ -4357,7 +4349,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param descriptor handle of descriptor to create<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2430</i>
 	 */
-	int GrB_Descriptor_new(PointerByReference descriptor);
+	int GrB_Descriptor_new(GrB_Descriptor_ByReference descriptor);
 	/**
 	 * set a parameter in a descriptor<br>
 	 * Original signature : <code>GrB_Info GrB_Descriptor_set(GrB_Descriptor, const GrB_Desc_Field, const GrB_Desc_Value)</code><br>
@@ -6069,7 +6061,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param desc descriptor for w and mask<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3531</i>
 	 */
-	int GrB_Vector_assign_INT32(GraphBLASLibrary.GrB_Vector w, GraphBLASLibrary.GrB_Vector mask, GraphBLASLibrary.GrB_BinaryOp accum, int x, LongBuffer I, long ni, GraphBLASLibrary.GrB_Descriptor desc);
+	int GrB_Vector_assign_INT32(GraphBLASLibrary.GrB_Vector w, GraphBLASLibrary.GrB_Vector mask, GraphBLASLibrary.GrB_BinaryOp accum, int x, NativeLong I, long ni, GraphBLASLibrary.GrB_Descriptor desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_assign_UINT32(GrB_Vector, const GrB_Vector, const GrB_BinaryOp, const uint32_t, const GrB_Index*, const GrB_Index, const GrB_Descriptor)</code><br>
@@ -7567,4 +7559,64 @@ public interface GraphBLASLibrary extends Library {
 			super();
 		}
 	};
+
+	class GrB_Vector_ByReference extends ByReference {
+
+		public GrB_Vector_ByReference() {
+			super(Native.POINTER_SIZE);
+		}
+
+		public void setValue(GrB_Vector value) {
+			getPointer().setPointer(0, value.getPointer());
+		}
+
+		public GrB_Vector getValue() {
+			return new GrB_Vector(getPointer().getPointer(0));
+		}
+	}
+
+	class GrB_Monoid_ByReference extends ByReference {
+
+		public GrB_Monoid_ByReference() {
+			super(Native.POINTER_SIZE);
+		}
+
+		public void setValue(GrB_Monoid value) {
+			getPointer().setPointer(0, value.getPointer());
+		}
+
+		public GrB_Monoid getValue() {
+			return new GrB_Monoid(getPointer().getPointer(0));
+		}
+	}
+
+	class GrB_Semiring_ByReference extends ByReference {
+
+		public GrB_Semiring_ByReference() {
+			super(Native.POINTER_SIZE);
+		}
+
+		public void setValue(GrB_Semiring value) {
+			getPointer().setPointer(0, value.getPointer());
+		}
+
+		public GrB_Semiring getValue() {
+			return new GrB_Semiring(getPointer().getPointer(0));
+		}
+	}
+
+	class GrB_Descriptor_ByReference extends ByReference {
+
+		public GrB_Descriptor_ByReference() {
+			super(Native.POINTER_SIZE);
+		}
+
+		public void setValue(GrB_Descriptor value) {
+			getPointer().setPointer(0, value.getPointer());
+		}
+
+		public GrB_Descriptor getValue() {
+			return new GrB_Descriptor(getPointer().getPointer(0));
+		}
+	}
 }
