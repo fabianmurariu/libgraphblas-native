@@ -53,13 +53,13 @@ trait SparseMatrix[F[_], +T] {
         }
       }
 
-      out.println(s"#SparseMatrix[bool, shape: ${rows}x${cols}, nvals: ${nvals}]")
+      out.println(s"#SparseMatrix[<TODO type>, shape: ${rows}x${cols}, nvals: ${nvals}]")
       printCorners('┌', '┐')
       for (i <- 0L until rows) {
         out.print(String.format(s" %${maxLengthRows}d  ", Long.box(i)))
         for (j <- 0L until cols) {
           val b = new ByteByReference()
-          GrBCode.fromInt(N.g.GrB_Matrix_extractElement_BOOL(b, m.getValue, i, j)) match {
+          GrBCode.fromInt(N.g.GrB_Matrix_extractElement_BOOL(b, m.getValue, i, j)) match { //FIXME this is only for bool but it's at a generic level
             case Success =>
               out.print(b.getValue)
             case _ =>

@@ -150,11 +150,12 @@ public class SanityTest {
             assertEquals(0, g.GrB_Descriptor_set(desc.getValue(), GraphBLASLibrary.GrB_Desc_Field.GrB_OUTP, GraphBLASLibrary.GrB_Desc_Value.GrB_REPLACE));
 
             // 1 loop BFS
-            ByteBuffer successor = ByteBuffer.allocate(1);
+            ByteByReference successor = new ByteByReference();
+            successor.setValue((byte)1);
             assertEquals(0, g.GrB_Vector_assign_INT32(v.getValue(), q.getValue(), null, 1, g.GrB_ALL , n, null));
-            assertEquals(0, g.GrB_vxm(q.getValue(), v.getValue(), null, booleanSR.getValue(), q.getValue() ,A.getValue(), desc.getValue()));
+            assertEquals(0, g.GrB_vxm(q.getValue(), v.getValue(), null, booleanSR.getValue(), q.getValue(), A.getValue(), desc.getValue()));
             assertEquals(0, g.GrB_Vector_reduce_BOOL(successor, null, lor.getValue(), q.getValue(), desc.getValue()));
-            assertEquals(1, successor.get());
+            assertEquals(1, successor.getValue());
         } finally {
             g.GrB_wait();
             g.GrB_finalize();

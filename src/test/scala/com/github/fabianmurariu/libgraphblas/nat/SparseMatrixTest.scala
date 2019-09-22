@@ -38,7 +38,7 @@ class SparseMatrixTest extends FlatSpec with Matchers {
           }
         } yield new String(bs.toByteArray, "UTF-8").trim
     }.unsafeRunSync() shouldBe
-      """#SparseMatrix[bool, shape: 11x11, nvals: 5]
+      """#SparseMatrix[<TODO type>, shape: 11x11, nvals: 5]
         |    ┌           ┐
         |  0  ...........
         |  1  ...........

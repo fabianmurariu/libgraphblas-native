@@ -44,13 +44,21 @@ public interface GraphBLASLibrary extends Library {
 	GrB_BinaryOp GrB_SECOND_FP64 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_FP64").getPointer(0));
 	GrB_BinaryOp GrB_SECOND_INT8 = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_INT8").getPointer(0));
 	GrB_BinaryOp GrB_SECOND_BOOL = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_SECOND_BOOL").getPointer(0));
+
 	GrB_BinaryOp GrB_LOR= new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_LOR").getPointer(0));
 	GrB_BinaryOp GrB_LAND= new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_LAND").getPointer(0));
+	GrB_BinaryOp GrB_XOR = new GrB_BinaryOp(JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_LXOR").getPointer(0));
+
 	NativeLong GrB_ALL = JNA_NATIVE_LIB.getGlobalVariableAddress("GrB_ALL").getNativeLong(0);
+
+	default NativeLong GrBALL(){return GrB_ALL;}
 
 	default GrB_BinaryOp GrBSecondBool(){
 		return GrB_SECOND_BOOL;
 	}
+	default GrB_BinaryOp GrBLOR(){ return GrB_LOR; }
+
+	default GrB_BinaryOp GrBLAND() { return GrB_LAND; }
 
 	public static interface GrB_Info {
 		/** <i>native declaration : /usr/include/GraphBLAS.h:79</i> */
@@ -1744,7 +1752,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param monoid handle of monoid to free<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:967</i>
 	 */
-	int GrB_Monoid_free(PointerByReference monoid);
+	int GrB_Monoid_free(ByReference monoid);
 	/**
 	 * create a semiring<br>
 	 * Original signature : <code>GrB_Info GrB_Semiring_new(GrB_Semiring*, const GrB_Monoid, const GrB_BinaryOp)</code><br>
@@ -1847,7 +1855,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param semiring handle of semiring to free<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1007</i>
 	 */
-	int GrB_Semiring_free(PointerByReference semiring);
+	int GrB_Semiring_free(ByReference semiring);
 	/**
 	 * and type methods return basic information about a vector.<br>
 	 * create a new vector with no entries<br>
@@ -2540,7 +2548,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param i row index<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1417</i>
 	 */
-	int GrB_Vector_extractElement_BOOL(ByteBuffer x, GraphBLASLibrary.GrB_Vector v, long i);
+	int GrB_Vector_extractElement_BOOL(ByteByReference x, GraphBLASLibrary.GrB_Vector v, long i);
 	/**
 	 * x = v(i)<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_extractElement_INT8(int8_t*, const GrB_Vector, const GrB_Index)</code><br>
@@ -4407,7 +4415,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param descriptor handle of descriptor to free<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2451</i>
 	 */
-	int GrB_Descriptor_free(PointerByReference descriptor);
+	int GrB_Descriptor_free(ByReference descriptor);
 	/**
 	 * associative monoid.<br>
 	 * C<Mask> = accum (C, A*B)<br>
@@ -6791,23 +6799,9 @@ public interface GraphBLASLibrary extends Library {
 	 * @param monoid monoid to do the reduction<br>
 	 * @param u vector to reduce<br>
 	 * @param desc descriptor (currently unused)<br>
-	 * <i>native declaration : /usr/include/GraphBLAS.h:4020</i><br>
-	 * @deprecated use the safer methods {@link #GrB_Vector_reduce_BOOL(java.nio.ByteBuffer, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Monoid, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_reduce_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
-	 */
-	@Deprecated
-	int GrB_Vector_reduce_BOOL(Pointer c, Pointer accum, Pointer monoid, Pointer u, Pointer desc);
-	/**
-	 * used in the future.<br>
-	 * c = accum (c, reduce_to_scalar (u))<br>
-	 * Original signature : <code>GrB_Info GrB_Vector_reduce_BOOL(bool*, const GrB_BinaryOp, const GrB_Monoid, const GrB_Vector, const GrB_Descriptor)</code><br>
-	 * @param c result scalar<br>
-	 * @param accum optional accum for c=accum(c,t)<br>
-	 * @param monoid monoid to do the reduction<br>
-	 * @param u vector to reduce<br>
-	 * @param desc descriptor (currently unused)<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:4020</i>
 	 */
-	int GrB_Vector_reduce_BOOL(ByteBuffer c, GraphBLASLibrary.GrB_BinaryOp accum, GraphBLASLibrary.GrB_Monoid monoid, GraphBLASLibrary.GrB_Vector u, GraphBLASLibrary.GrB_Descriptor desc);
+	int GrB_Vector_reduce_BOOL(ByteByReference c, GraphBLASLibrary.GrB_BinaryOp accum, GraphBLASLibrary.GrB_Monoid monoid, GraphBLASLibrary.GrB_Vector u, GraphBLASLibrary.GrB_Descriptor desc);
 	/**
 	 * c = accum (c, reduce_to_scalar (u))<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_reduce_INT8(int8_t*, const GrB_BinaryOp, const GrB_Monoid, const GrB_Vector, const GrB_Descriptor)</code><br>
