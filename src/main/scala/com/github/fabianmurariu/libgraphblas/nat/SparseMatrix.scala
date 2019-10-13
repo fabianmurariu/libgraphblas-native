@@ -12,6 +12,7 @@ import cats.implicits._
 
 trait SparseMatrix[F[_], +T] {
   private[nat] def m: GrB_Matrix_ByReference
+
   private[nat] implicit def N: NativeMode
 
   def nrows(implicit F: Sync[F]): F[Long] = F.delay {
@@ -73,6 +74,30 @@ trait SparseMatrix[F[_], +T] {
       out.flush()
     }
 
+
+  def set(i: Long, j: Long)(implicit F: Sync[F]): F[GrBCode] = F.delay {
+    GrBCode.fromInt(N.g.GrB_Matrix_setElement_BOOL(m.getValue, true, i, j))
+  }
+
+  def unset(i: Long, j: Long)(implicit F: Sync[F]): F[GrBCode] = F.delay {
+    GrBCode.fromInt(N.g.GrB_Matrix_setElement_BOOL(m.getValue, false, i, j))
+  }
+
+  def get(i: Long, j: Long)(implicit F: Sync[F]) = F.delay {
+    val b = new ByteByReference()
+    GrBCode.fromInt(N.g.GrB_Matrix_extractElement_BOOL(b, m.getValue, i, j)) match {
+      case Success => true
+      case NoValue | _ /* these are all errors */ => false
+    }
+  }
+
+  def set(ijs: TraversableOnce[(Long, Long)])(implicit F: Sync[F]): F[GrBCode] = F.delay {
+    ijs.foreach {
+      case (i, j) =>
+        GrBCode.fromInt(N.g.GrB_Matrix_setElement_BOOL(m.getValue, true, i, j))
+    }
+    Success
+  }
 }
 
 

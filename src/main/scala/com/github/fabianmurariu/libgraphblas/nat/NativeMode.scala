@@ -13,21 +13,39 @@ class NonBlocking(val g: GraphBLASLibrary) extends NativeMode
 class Blocking(val g: GraphBLASLibrary) extends NativeMode
 
 object NativeMode {
-  val blocking: Resource[IO, Blocking] = makeLibrary[IO](GraphBLASLibrary.GrB_Mode.GrB_BLOCKING).map(_.asInstanceOf[Blocking])
-  val nonBlocking: Resource[IO, NonBlocking] = makeLibrary[IO](GraphBLASLibrary.GrB_Mode.GrB_NONBLOCKING).map(_.asInstanceOf[NonBlocking])
 
-  private def makeLibrary[F[_]](mode: Int)(implicit F: Applicative[F]): Resource[F, NativeMode] = Resource.make(F.pure {
-    val g = GraphBLASLibrary.INSTANCE
-    mode match {
-      case 1 =>
-        g.GrB_init(GraphBLASLibrary.GrB_Mode.GrB_BLOCKING)
-        new Blocking(g)
-      case _ =>
-        g.GrB_init(GraphBLASLibrary.GrB_Mode.GrB_NONBLOCKING)
-        new NonBlocking(g)
+  object blocking {
+    implicit val native: NativeMode = {
+      val g = GraphBLASLibrary.INSTANCE
+      g.GrB_init(GraphBLASLibrary.GrB_Mode.GrB_BLOCKING)
+
+      Runtime.getRuntime.addShutdownHook(new Thread(new Runnable {
+        override def run(): Unit = {
+          g.GrB_wait()
+          g.GrB_finalize()
+        }
+      }))
+
+
+      new Blocking(g)
     }
-  })(mode => F.pure {
-    GrBCode.fromInt(mode.g.GrB_wait())(mode)
-    GrBCode.fromInt(mode.g.GrB_finalize())(mode)
-  })
+
+  }
+
+  object nonblocking {
+    implicit val native: NativeMode = {
+      val g = GraphBLASLibrary.INSTANCE
+      g.GrB_init(GraphBLASLibrary.GrB_Mode.GrB_NONBLOCKING)
+
+      Runtime.getRuntime.addShutdownHook(new Thread(new Runnable {
+        override def run(): Unit = {
+          g.GrB_wait()
+          g.GrB_finalize()
+        }
+      }))
+
+      new NonBlocking(g)
+    }
+  }
+
 }

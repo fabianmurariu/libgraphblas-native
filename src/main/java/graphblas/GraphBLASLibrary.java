@@ -2792,7 +2792,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param v vector to extract tuples from<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1548</i>
 	 */
-	int GrB_Vector_extractTuples_BOOL(LongBuffer I, ByteBuffer X, LongBuffer nvals, GraphBLASLibrary.GrB_Vector v);
+	int GrB_Vector_extractTuples_BOOL(LongBuffer I, ByteBuffer X, LongByReference nvals, GraphBLASLibrary.GrB_Vector v);
 	/**
 	 * [I,~,X] = find (v)<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_extractTuples_INT8(GrB_Index*, int8_t*, GrB_Index*, const GrB_Vector)</code><br>
@@ -2902,7 +2902,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param v vector to extract tuples from<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:1588</i>
 	 */
-	int GrB_Vector_extractTuples_INT32(LongBuffer I, IntBuffer X, LongBuffer nvals, GraphBLASLibrary.GrB_Vector v);
+	int GrB_Vector_extractTuples_INT32(LongBuffer I, IntBuffer X, LongByReference nvals, GraphBLASLibrary.GrB_Vector v);
 	/**
 	 * [I,~,X] = find (v)<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_extractTuples_UINT32(GrB_Index*, uint32_t*, GrB_Index*, const GrB_Vector)</code><br>
@@ -4459,8 +4459,8 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:2532</i><br>
 	 * @deprecated use the safer methods {@link #GrB_vxm(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, graphblas.GraphBLASLibrary.GrB_Semiring, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Matrix, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_vxm(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated
-	int GrB_vxm(Pointer w, Pointer mask, Pointer accum, Pointer semiring, Pointer u, Pointer A, Pointer desc);
+//	@Deprecated
+//	int GrB_vxm(Pointer w, Pointer mask, Pointer accum, Pointer semiring, Pointer u, Pointer A, Pointer desc);
 	/**
 	 * w'<Mask> = accum (w, u'*A)<br>
 	 * Original signature : <code>GrB_Info GrB_vxm(GrB_Vector, const GrB_Vector, const GrB_BinaryOp, const GrB_Semiring, const GrB_Vector, const GrB_Matrix, const GrB_Descriptor)</code><br>
@@ -5914,8 +5914,6 @@ public interface GraphBLASLibrary extends Library {
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3476</i><br>
 	 * @deprecated use the safer methods {@link #GrB_Vector_assign_BOOL(graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_Vector, graphblas.GraphBLASLibrary.GrB_BinaryOp, byte, java.nio.LongBuffer, long, graphblas.GraphBLASLibrary.GrB_Descriptor)} and {@link #GrB_Vector_assign_BOOL(com.sun.jna.Pointer, com.sun.jna.Pointer, com.sun.jna.Pointer, byte, com.sun.jna.ptr.LongByReference, long, com.sun.jna.Pointer)} instead
 	 */
-	@Deprecated
-	int GrB_Vector_assign_BOOL(Pointer w, Pointer mask, Pointer accum, byte x, LongByReference I, long ni, Pointer desc);
 	/**
 	 * Each of these can be used with their generic name, GrB_assign.<br>
 	 * w<mask>(I) = accum (w(I),x)<br>
@@ -5929,7 +5927,7 @@ public interface GraphBLASLibrary extends Library {
 	 * @param desc descriptor for w and mask<br>
 	 * <i>native declaration : /usr/include/GraphBLAS.h:3476</i>
 	 */
-	int GrB_Vector_assign_BOOL(GraphBLASLibrary.GrB_Vector w, GraphBLASLibrary.GrB_Vector mask, GraphBLASLibrary.GrB_BinaryOp accum, byte x, LongBuffer I, long ni, GraphBLASLibrary.GrB_Descriptor desc);
+	int GrB_Vector_assign_BOOL(GraphBLASLibrary.GrB_Vector w, GraphBLASLibrary.GrB_Vector mask, GraphBLASLibrary.GrB_BinaryOp accum, boolean x, NativeLong I, long ni, GraphBLASLibrary.GrB_Descriptor desc);
 	/**
 	 * w<mask>(I) = accum (w(I),x)<br>
 	 * Original signature : <code>GrB_Info GrB_Vector_assign_INT8(GrB_Vector, const GrB_Vector, const GrB_BinaryOp, const int8_t, const GrB_Index*, const GrB_Index, const GrB_Descriptor)</code><br>

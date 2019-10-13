@@ -4,12 +4,11 @@ import java.io.{ByteArrayOutputStream, PrintStream}
 
 import cats.effect.IO
 import org.scalatest.{FlatSpec, FunSuite, Matchers}
+import NativeMode.nonblocking.native
 
 class SparseVectorTest extends FlatSpec with Matchers {
 
-  val vectorBool = NativeMode.blocking.flatMap { implicit nb =>
-    BooleanSparseVector(12, Array(0, 1, 5, 7, 11))
-  }
+  val vectorBool = BooleanSparseVector[IO](12, Array[Long](0, 1, 5, 7, 11))
 
   "NativeSparseVector boolean" should "be usable and return size and number of vals" in {
     vectorBool.use { v =>
@@ -36,6 +35,10 @@ class SparseVectorTest extends FlatSpec with Matchers {
     ).unsafeRunSync() shouldBe
       """#SparseVector[<TODO type>, size: 12, nvals: 5]
         |[11...1.1...1]""".stripMargin
+  }
+
+  it should "extract the dense vector" in {
+    vectorBool.use(_.dense).unsafeRunSync().toVector shouldBe Vector(true, true, false, false, false, true, false, true, false, false, false, true)
   }
 
 }

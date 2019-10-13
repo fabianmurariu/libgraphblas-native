@@ -4,12 +4,10 @@ import java.io.{ByteArrayOutputStream, PrintStream}
 
 import cats.effect.IO
 import org.scalatest.{FlatSpec, Matchers}
-
+import NativeMode.nonblocking.native
 class SparseMatrixTest extends FlatSpec with Matchers {
 
-  val matrix = NativeMode.nonBlocking.flatMap { implicit nb =>
-    BooleanSparseMatrix[IO](11, 11, Array(2, 3, 5, 9, 10), Array(1, 4, 7, 0, 10), Array(true, true, true, true, true))
-  }
+  val matrix = BooleanSparseMatrix[IO](11, 11, Array(2, 3, 5, 9, 10), Array(1, 4, 7, 0, 10), Array(true, true, true, true, true))
 
   "NativeMatrix boolean" should "have a valid constructor that releases references after usage" in {
 

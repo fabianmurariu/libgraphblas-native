@@ -13,7 +13,7 @@ trait Semiring[F[_], +A] {
 case class BooleanSemiring[F[_]](s: GrB_Semiring_ByReference, N: NativeMode) extends Semiring[F, Boolean]
 
 object Semiring {
-  def LAND[F[_]](m: BooleanMonoid[F])(implicit S: Sync[F], N: NativeMode): Resource[F, Semiring[F, Boolean]] = Resource.make(S.delay {
+  def LAND[F[_]](m: Monoid[F, Boolean])(implicit S: Sync[F], N: NativeMode): Resource[F, Semiring[F, Boolean]] = Resource.make(S.delay {
     val s = new GrB_Semiring_ByReference()
     N.g.GrB_Semiring_new(s, m.m.getValue, N.g.GrBLAND())
     BooleanSemiring(s, N).asInstanceOf[Semiring[F, Boolean]]
