@@ -32,7 +32,7 @@ trait SparseVector[F[_], T] {
     n <- nvals
     s <- size
     _ <- F.delay {
-      out.println(s"#SparseVector[<TODO type>, size: $s, nvals: $n]")
+      out.println(s"#SparseVector[${self.getClass}, size: $s, nvals: $n]")
       out.print("[")
       for (i <- 0L until s) {
         val b = new ByteByReference()
@@ -45,10 +45,11 @@ trait SparseVector[F[_], T] {
     }
   } yield ()
 
-  def foldLeft(start: Boolean, m: Monoid[F, T], desc: Descriptor[F])(implicit F: Sync[F]): F[Unit] = F.delay {
+  def foldLeft(start: Boolean, m: Monoid[F, T], desc: Descriptor[F])(implicit F: Sync[F]): F[Boolean] = F.delay {
     val b = new ByteByReference()
     if (start) b.setValue(1) else b.setValue(0)
     N.g.GrB_Vector_reduce_BOOL(b, null, m.m.getValue, self.v.getValue, desc.d.getValue)
+    b.getValue == -1
   }
 
   def vxm[A](mask: SparseVector[F, A], s: Semiring[F, T], A: SparseMatrix[F, T], desc: Descriptor[F])(implicit F: Sync[F]): F[GrBCode] = F.delay {

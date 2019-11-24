@@ -33,7 +33,7 @@ class SparseVectorTest extends FlatSpec with Matchers {
           }
         } yield new String(bs.toByteArray, "UTF-8").trim
     ).unsafeRunSync() shouldBe
-      """#SparseVector[<TODO type>, size: 12, nvals: 5]
+      """#SparseVector[class com.github.fabianmurariu.libgraphblas.nat.BooleanSparseVector, size: 12, nvals: 5]
         |[11...1.1...1]""".stripMargin
   }
 

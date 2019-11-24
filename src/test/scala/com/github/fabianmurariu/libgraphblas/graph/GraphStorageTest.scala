@@ -3,7 +3,7 @@ package com.github.fabianmurariu.libgraphblas.graph
 import cats.effect.IO
 import com.github.fabianmurariu.libgraphblas.nat.NativeMode
 import org.scalacheck.{Arbitrary, Gen, Properties}
-import org.scalacheck.Prop._
+import org.scalacheck.Prop.{forAll, propBoolean}
 import NativeMode.nonblocking.native
 
 object GraphStorageSpec extends Properties("GraphStorage") {
@@ -17,13 +17,13 @@ object GraphStorageSpec extends Properties("GraphStorage") {
   implicit val edges: Arbitrary[List[Edge]] = Arbitrary(Gen.nonEmptyListOf(edge))
 
   property("GraphStorage can be created") = forAll { edges: List[Edge] =>
-    val gs = GraphStorage[IO, Int](edges.map { case Edge(v1, v2) => v1 -> v2 }: _*)
+    val gs = GraphStorage[IO, Int](edges.distinct.flatMap (Edge.unapply): _*)
 
-    val n = gs.use { g =>
-      g.neighbours(edges.head.v1)
+    val (neighbours,e@Edge(v1, v2))  = gs.use { g =>
+      g.neighbours(edges.head.v1).map(n => n -> edges.head)
     }.unsafeRunSync()
 
-    n.nonEmpty
+    (neighbours(v1) == 1 && neighbours(v2) == 2) :| s"${neighbours.toVector} did not contain $e, total: ${neighbours.length}"
   }
 
 }

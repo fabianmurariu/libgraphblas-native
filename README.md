@@ -6,4 +6,4 @@ Java bindings for graph library at the core of RedisGraph
 
 [GraphBlas](http://graphblas.org/index.php?title=Graph_BLAS_Forum)
 
-Early days, title is a bit misleading
+POC, Early days, title is a bit misleading
